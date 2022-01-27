@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { Container } from './styles'
+import { api } from "../../services/api";
 
 export function TransactionsTable(){
   useEffect(() => {
-    fetch('http://localhost:3000/api/transactions')
-      .then(response => response.json()) //pego a resposta e transformo em json
-      .then(data => console.log(data)) // escrevo na tela o resultado
+    api.get('transactions')
+      .then(response => console.log(response.data))
   }, []);
 
   return(
