@@ -4,6 +4,8 @@ import { GlobalStyle } from "./styles/global";
 import Modal from 'react-modal';
 import { useState } from "react";
 
+Modal.setAppElement('#root');
+
 export function App() {
   const [isNewTrasactionModalOpen, setIsNewTrasactionModalOpen] = useState(false);
 
