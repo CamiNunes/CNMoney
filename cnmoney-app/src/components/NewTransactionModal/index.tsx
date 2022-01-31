@@ -2,7 +2,8 @@ import Modal from 'react-modal';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import closeImg from '../../assets/close.svg';
-import { Container, TransactionTypeContainer } from '../NewTransactionModal/styles';
+import { Container, TransactionTypeContainer, ButtonTypeTransaction } from '../NewTransactionModal/styles';
+import { useState } from 'react';
 
 interface NewTrasanctionModalProps{
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface NewTrasanctionModalProps{
 }
 
 export function NewTrasanctionModal({isOpen, onRequestClose}:NewTrasanctionModalProps){
+  const [type, setType] = useState('deposit');
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} overlayClassName="react-modal-overlay" className="react-modal-content">
       <button type="button">
@@ -20,14 +22,14 @@ export function NewTrasanctionModal({isOpen, onRequestClose}:NewTrasanctionModal
         <input placeholder="Título"/>
         <input type="number" placeholder="Valor"/>
         <TransactionTypeContainer>
-          <button type="button">
+          <ButtonTypeTransaction type="button" onClick={ () => { setType('deposit');}} isActive={type === 'deposit'}>
             <img src={incomeImg} alt="Entrada"/>
             <span>Entrada</span>
-          </button>
-          <button type="button">
+          </ButtonTypeTransaction>
+          <ButtonTypeTransaction type="button" onClick={ () => { setType('withdraw');}} isActive={type === 'withdraw'}>
           <img src={outcomeImg} alt="Saída"/>
           <span>Saída</span>
-          </button>
+          </ButtonTypeTransaction>
         </TransactionTypeContainer>
         <input placeholder="Categoria"/>
         <button type="submit">Cadastrar</button>
