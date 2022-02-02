@@ -1,11 +1,10 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useContext } from 'react';
 import Modal from 'react-modal';
+import { TransactionsContext } from '../../TransactionsContext';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import closeImg from '../../assets/close.svg';
-import { api } from '../../services/api';
 import { Container, TransactionTypeContainer, ButtonTypeTransaction } from './styles';
-
 
 interface NewTrasanctionModalProps{
   isOpen: boolean;
@@ -13,23 +12,22 @@ interface NewTrasanctionModalProps{
 }
 
 export function NewTrasanctionModal({isOpen, onRequestClose}:NewTrasanctionModalProps){
+  const { createTransaction } = useContext(TransactionsContext);
+
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-  const [value, setValue] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [type, setType] = useState('deposit');
 
   function handleCreateNewTransaction(event: FormEvent) { 
     event.preventDefault();
 
-    const data = {
+    createTransaction({
       title,
-      value,
-      type,
-      category
-    };
-
-    api.post('/transactions', data)
-
+      amount, 
+      category,
+      type
+    })
   }
 
   return (
@@ -40,7 +38,7 @@ export function NewTrasanctionModal({isOpen, onRequestClose}:NewTrasanctionModal
       <Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar Transação</h2>  
         <input placeholder="Título" value={title} onChange={event => setTitle(event.target.value)}/>
-        <input type="number" placeholder="Valor" value={value} onChange={event => setValue(Number(event.target.value))}/>
+        <input type="number" placeholder="Valor" value={amount} onChange={event => setAmount(Number(event.target.value))}/>
         <TransactionTypeContainer>
           <ButtonTypeTransaction type="button" onClick={ () => { setType('deposit');}} isActive={type === 'deposit'} activeColor="green" >
             <img src={incomeImg} alt="Entrada"/>
