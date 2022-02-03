@@ -22,12 +22,14 @@ export function NewTrasanctionModal({isOpen, onRequestClose}:NewTrasanctionModal
   function handleCreateNewTransaction(event: FormEvent) { 
     event.preventDefault();
 
-    createTransaction({
+    await createTransaction({
       title,
       amount, 
       category,
       type
     })
+
+    onRequestClose()
   }
 
   return (
