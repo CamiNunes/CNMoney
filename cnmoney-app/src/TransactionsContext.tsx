@@ -25,7 +25,7 @@ interface TransactionsProvidesProps{
 
 interface TransactionsContextData{
   transactions: Transaction[];  
-  createTransaction: (transaction: TransactionInput) => void;
+  createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
 export const TransactionsContext = createContext<TransactionsContextData>(
