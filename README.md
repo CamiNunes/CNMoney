@@ -1,1 +1,1 @@
-Projeto usando como base o projeto DT Money da rpcketseat para criar um projeto de finanças pessoias para gerenciar as minhas finanças.
+Projeto usando como base o projeto DT Money da rocketseat para criar um projeto de finanças pessoias para gerenciar as minhas finanças.
