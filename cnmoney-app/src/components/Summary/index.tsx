@@ -52,6 +52,15 @@ export function Summary(){
           {new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(summary.total)}
         </strong>
       </div>
+      <div className="">
+        <header>
+         <p>Investimentos</p>
+         <img src={totalImg} alt="Investimento"/>
+        </header>
+        <strong>
+          {new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(summary.total)}
+        </strong>
+      </div>
     </Container>
   );
 }
